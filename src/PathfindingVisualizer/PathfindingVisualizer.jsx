@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import logo from 'C:/Users/suraj/Desktop/pathFinder/Pathfinding/src/PathfindingVisualizer/gfg-new-logo.png';
 import Node from './Node/Node';
 import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
 import './PathfindingVisualizer.css';
-
-const START_NODE_ROW = 10;
-const START_NODE_COL = 15;
-const FINISH_NODE_ROW = 10;
-const FINISH_NODE_COL = 35;
+const START_NODE_ROW = 9;
+const START_NODE_COL = 39;
+const FINISH_NODE_ROW = 3;
+const FINISH_NODE_COL = 7;
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -54,7 +52,6 @@ export default class PathfindingVisualizer extends Component {
       }, 10 * i);
     }
   }
-
   animateShortestPath(nodesInShortestPathOrder) {
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
       setTimeout(() => {
@@ -79,22 +76,18 @@ export default class PathfindingVisualizer extends Component {
 
     return (
       <>
-      <div className="logo">
-          <img src={logo} width="100" height="50" />
+        <div className="navBar">
+          <i className="fa-solid fa-chart-pie icons1"></i>Dijkstra Algorithm
+          <i className="fa-solid fa-chart-pie icons1"></i>
         </div>
-        <button onClick={() => this.visualizeDijkstra()}>
-          Visualize Dijkstra's Algorithm
-        </button>
+
         <div className="grid">
           {grid.map((row, rowIdx) => {
             return (
               <div key={rowIdx}>
-                
                 {row.map((node, nodeIdx) => {
                   const {row, col, isFinish, isStart, isWall} = node;
                   return (
-
-                    
                     <Node
                       key={nodeIdx}
                       col={col}
@@ -108,12 +101,20 @@ export default class PathfindingVisualizer extends Component {
                       }
                       onMouseUp={() => this.handleMouseUp()}
                       row={row}></Node>
-                      
                   );
                 })}
               </div>
             );
           })}
+        </div>
+        <button className="button" onClick={() => this.visualizeDijkstra()}>
+          Visualize Dijkstra's Algorithm
+        </button>
+        <div className="footer">
+          <i className="fa-brands fa-facebook-f icons"></i>
+          <i className="fa-brands fa-instagram icons"></i>
+          <i className="fa-brands fa-twitter icons"></i>
+          <i className="fa-solid fa-envelope icons"></i>
         </div>
       </>
     );
@@ -122,7 +123,7 @@ export default class PathfindingVisualizer extends Component {
 
 const getInitialGrid = () => {
   const grid = [];
-  for (let row = 0; row < 20; row++) {
+  for (let row = 0; row < 30; row++) {
     const currentRow = [];
     for (let col = 0; col < 50; col++) {
       currentRow.push(createNode(col, row));
